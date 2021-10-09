@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/background.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/enemy/EnemySpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World.gd" type="Script" id=4]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 540, 960 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 285.905, 847.624 )
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="Score" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "SCORE: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="spawn_laser" from="Player" to="." method="_on_Player_spawn_laser"]
+[connection signal="add_score" from="EnemySpawner" to="." method="_on_EnemySpawner_add_score"]

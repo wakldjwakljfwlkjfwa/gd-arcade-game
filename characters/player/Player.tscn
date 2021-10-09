@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/player.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/Player.gd" type="Script" id=2]
+
+[node name="Player" type="Area2D"]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -42.4071, 4.21635, -28.7312, 25.6221, 28.0535, 25.6221, 41.432, 3.62175, 7.24234, -12.4325, 0.107101, -28.1895, -8.51466, -13.6217 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 0, -40 )
+
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
